@@ -38,7 +38,7 @@ const ConfigPerfil = ({ userData }) => {
     try {
       axios
         .patch(
-          "http://https://apicampuscv.onrender.com/api/usuarios/update/current",
+          "https://apicampuscv.onrender.com/api/usuarios/update/current",
           {
             Nombre,
             Apellido,

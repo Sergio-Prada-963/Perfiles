@@ -11,7 +11,7 @@ const TableContratados = ({ usuarios, getDataActive, getDataNew, idCamper, getDa
     async function getData() {
       try {
         if (idCamper) {
-          const response = await axios.get(`http://https://apicampuscv.onrender.com/api/usuarios/user/${idCamper}`)
+          const response = await axios.get(`https://apicampuscv.onrender.com/api/usuarios/user/${idCamper}`)
           setCamperData(response.data)
         }
       } catch (error) {
@@ -38,7 +38,7 @@ const TableContratados = ({ usuarios, getDataActive, getDataNew, idCamper, getDa
         if (result.isConfirmed) {
           await axios
             .put(
-              `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
+              `https://apicampuscv.onrender.com/api/usuarios/${id}`,
               {
                 Estado: "EN PROCESO",
               },
@@ -56,7 +56,7 @@ const TableContratados = ({ usuarios, getDataActive, getDataNew, idCamper, getDa
         } else if (result.isDenied) {
           await axios
             .put(
-              `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
+              `https://apicampuscv.onrender.com/api/usuarios/${id}`,
               {
                 Estado: "ACTIVO",
               },
@@ -88,7 +88,7 @@ const TableContratados = ({ usuarios, getDataActive, getDataNew, idCamper, getDa
       if (result.isConfirmed) {
         await axios
           .put(
-            `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
+            `https://apicampuscv.onrender.com/api/usuarios/${id}`,
             {
               Estado: "INACTIVO",
             },
