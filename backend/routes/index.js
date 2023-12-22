@@ -15,7 +15,7 @@ fs.readdirSync(pathRouter).filter(async (file) => {
   const skip = ["index"].includes(fileWithOutExt)
   if (!skip) {
     const { default: defaultRouter } = await import(`./${fileWithOutExt}.routes.js`)
-    router.use(`/${fileWithOutExt}`, defaultRouter) //TODO: localhost/users
+    router.use(`/${fileWithOutExt}`, defaultRouter)
     console.log("Cargar Ruta ======>", fileWithOutExt)
   }
 })

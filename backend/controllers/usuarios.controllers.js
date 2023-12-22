@@ -108,25 +108,6 @@ export const deleteUsers = async (req, res = response, next) => {
   res.json(usuario)
 }
 
-/* export const putUsers = async (req, res = response) => {
-  const { id } = req.params;
-  const { email, password, ...resto } = req.body;
-  const usuarioExiste = await Usuarios.findOne({ email });
-  if (usuarioExiste) {
-    return res.status(400).json({
-      msg: "No puedes actualizar el correo con uno que ya se encuentre registrado",
-    });
-  }
-  if (password) {
-    resto.password = await Usuarios.encryptPassword(password);
-  }
-  const usuario = await Usuarios.findByIdAndUpdate(id, resto, { new: true });
-  res.json({
-    msg: "Usuario Actualizado",
-    usuario: usuario,
-  });
-}; */
-
 export const putUsers = async (req, res = response) => {
   const {
     Nombre,

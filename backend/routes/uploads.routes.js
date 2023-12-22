@@ -11,6 +11,4 @@ validateDocuments,],uploadsControlers.uploadFile)
 
 router.post("/img", [validJWT, validateDocuments], uploadsControlers.uploadImg)
 
-//router.post("/document", [validJWT, validateDocuments], uploadsControlers.uploadFileArchivos)
-
 export default router

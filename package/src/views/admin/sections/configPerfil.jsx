@@ -30,8 +30,6 @@ const ConfigPerfil = ({ userData }) => {
   }
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0]
-    console.log(event.target.files)
     setNewImage(event.target.files[0])
   }
 

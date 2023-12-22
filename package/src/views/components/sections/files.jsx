@@ -13,8 +13,6 @@ const Files = ({ keyy }) => {
     }
   }, [keyy.nameNewFile]);
 
-  console.log(keyy);
-  
   return (
     <>
       <a href={file} download>

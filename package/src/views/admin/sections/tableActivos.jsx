@@ -3,12 +3,8 @@ import { Container, Row, Col } from "reactstrap"
 import axios from "axios"
 import Swal from "sweetalert2"
 
-
-const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper }) => {
-
-  const putContratados= async (id) => {
-    console.log(id)
-
+const TablaActivos = ({ usuarios, getDataActive, getDataNew, setIdCamper, getDataContrato }) => {
+  const putContratados = async (id) => {
     try {
       await axios
         .put(
@@ -19,9 +15,9 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
           { withCredentials: true }
         )
         .then((response) => {
-         getDataActive()
-         getDataNew()
-
+          getDataActive()
+          getDataNew()
+          getDataContrato()
         })
         .catch((err) => {
           console.error("Un error :(", err)
@@ -31,9 +27,7 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
     }
   }
 
-  const putInactivos= async (id) => {
-    console.log(id)
-
+  const putInactivos = async (id) => {
     try {
       await axios
         .put(
@@ -44,10 +38,8 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
           { withCredentials: true }
         )
         .then((response) => {
-         getDataActive()
-         getDataNew()
-
-         //aprovacion()
+          getDataActive()
+          getDataNew()
         })
         .catch((err) => {
           console.error("Un error :(", err)
@@ -58,38 +50,32 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
   }
 
   const Delete = async (id) => {
-    console.log(id)
-      Swal.fire({
-        icon:"question",
-        title: "Borrar",
-        text: "¿Estas seguro que deseas borrar este usuario?",
-        showCancelButton: true,
-        showConfirmButton: true,
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          await axios
-            .put(
-              `http://localhost:9000/api/usuarios/${id}`,
-              {
-                Estado: "INACTIVO",
-              },
-              { withCredentials: true }
-            )
-            .then((response) => {
-              getDataActive()
-              getDataNew()
-            
-    
-            })
-            .catch((err) => {
-              console.error("Un error :(", err)
-            })
-
-        }})
+    Swal.fire({
+      icon: "question",
+      title: "Borrar",
+      text: "¿Estas seguro que deseas borrar este usuario?",
+      showCancelButton: true,
+      showConfirmButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios
+          .put(
+            `http://localhost:9000/api/usuarios/${id}`,
+            {
+              Estado: "INACTIVO",
+            },
+            { withCredentials: true }
+          )
+          .then((response) => {
+            getDataActive()
+            getDataNew()
+          })
+          .catch((err) => {
+            console.error("Un error :(", err)
+          })
+      }
+    })
   }
-
-
-
 
   return (
     <div className='mt-5'>
@@ -131,32 +117,29 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
                           className='btn btn-primary'
                           data-bs-toggle='modal'
                           data-bs-target='#staticBackdrop'
-                          onClick={() => setCamper(usuario._id)}
+                          onClick={() => setIdCamper(usuario._id)}
                         >
                           Ver
                         </button>
                       </td>
                       <td>
-                        <button type='button' className='btn btn-warning'
-                        onClick={()=>putContratados(usuario._id)}
-                        >
+                        <button type='button' className='btn btn-warning' onClick={() => putContratados(usuario._id)}>
                           <i class='fa-solid fa-clipboard-check'></i>
                         </button>
                       </td>
                       <td>
-                        <button type='button' className='btn btn-secondary'
-                          onClick={()=>{
+                        <button
+                          type='button'
+                          className='btn btn-secondary'
+                          onClick={() => {
                             putInactivos(usuario._id)
-                            
                           }}
                         >
                           <i className='fa-solid fa-thumbs-down'></i>
                         </button>
                       </td>
                       <td>
-                        <button type='button' className='btn btn-danger'
-                         onClick={()=>Delete(usuario._id)}
-                        >
+                        <button type='button' className='btn btn-danger' onClick={() => Delete(usuario._id)}>
                           <i className='fa-solid fa-trash'></i>
                         </button>
                       </td>
@@ -169,36 +152,6 @@ const TablaActivos = ({ usuarios,getDataActive,aprovacion,getDataNew, setCamper 
           </Col>
         </Row>
       </Container>
-
-      <div
-        className='modal fade'
-        id='staticBackdrop'
-        data-bs-backdrop='static'
-        data-bs-keyboard='false'
-        tabIndex='-1'
-        aria-labelledby='staticBackdropLabel'
-        aria-hidden='true'
-      >
-        <div className='modal-dialog'>
-          <div className='modal-content'>
-            <div className='modal-header'>
-              <h1 className='modal-title fs-5' id='staticBackdropLabel'>
-                Modal title
-              </h1>
-              <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-            </div>
-            <div className='modal-body'>...</div>
-            <div className='modal-footer'>
-              <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>
-                Close
-              </button>
-              <button type='button' className='btn btn-primary'>
-                Understood
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

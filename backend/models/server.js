@@ -30,7 +30,6 @@ class Server {
       })
     )
     this.app.use(express.json())
-    //this.app.use(express.static("public"));
     this.app.use(
       fileUpload({
         useTempFiles: true,
@@ -45,12 +44,9 @@ class Server {
       res.status(200).json({ message: "Sesión cerrada exitosamente" })
     })
     this.app.post("/api/logout", (req, res) => {
-      // Realiza el proceso de cierre de sesión aquí
       // Agrega las cabeceras para evitar el almacenamiento en caché
-      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate") // HTTP 1.1
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate")
       res.setHeader("Expires", "0") // Proxies
-
-      // Envía la respuesta
       res.send("Sesión cerrada exitosamente")
     })
   }

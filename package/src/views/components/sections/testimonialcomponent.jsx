@@ -12,10 +12,6 @@ const TestimonialComponent = () => {
   const [verDetalles, setDetalles] = useState(false)
   const [detalles, setDetalle] = useState({})
   const [ImgUser, setImgUser] = useState("")
-  const [emailForm, setEmailForm] = useState("")
-  const [textForm, setTextForm] = useState("")
-
-console.log(usuarios);
 
   useEffect(() => {
     async function fetch() {
@@ -45,7 +41,20 @@ console.log(usuarios);
   }
 
   if (loader) {
-    return <h1>Cargandoo...</h1>
+    return (
+      <div className='centrado'>
+        <div className='lds-roller'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -152,7 +161,6 @@ console.log(usuarios);
                     Tu Correo
                   </label>
                   <input
-                    onChange={(e) => setEmailForm(e.target.value)}
                     type='email'
                     className='form-control'
                     id='exampleFormControlInput1'
@@ -163,7 +171,6 @@ console.log(usuarios);
                     Mensaje
                   </label>
                   <textarea
-                    onChange={(e) => setTextForm(e.target.value)}
                     className='form-control'
                     id='exampleFormControlTextarea1'
                     rows='3'

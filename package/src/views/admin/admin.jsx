@@ -18,23 +18,6 @@ const Admin = ({ userData }) => {
   //selected view camper
   const [idCamper, setIdCamper] = useState(null)
 
-  const setCamper = (userId) => {
-    localStorage.setItem("IDCAMPERadmi", userId)
-    setIdCamper(userId)
-  }
-
-  useEffect(() => {
-    async function getData() {
-      try {
-        const response = await axios.get("http://localhost:9000/api/usuarios")
-        setUsuarios(response.data.usuarios)
-      } catch (error) {
-        console.error("Ha ocurrido un error", error)
-      }
-    }
-    getData()
-  }, [])
-
   async function getDataActive() {
     try {
       const response = await axios.get("http://localhost:9000/api/usuarios")
@@ -43,18 +26,6 @@ const Admin = ({ userData }) => {
       console.error("Ha ocurrido un error", error)
     }
   }
-
-  useEffect(() => {
-    async function getData() {
-      try {
-        const response = await axios.get("http://localhost:9000/api/usuarios/proceso")
-        setAprovacion(response.data)
-      } catch (error) {
-        console.error("Ha ocurrido un error", error)
-      }
-    }
-    getData()
-  }, [])
 
   async function getDataNew() {
     try {
@@ -65,21 +36,20 @@ const Admin = ({ userData }) => {
     }
   }
 
+  async function getDataContrato() {
+    try {
+      const response = await axios.get("http://localhost:9000/api/usuarios/contratado")
+      setContrtados(response.data.usuarios)
+    } catch (error) {
+      console.error("Ha ocurrido un error", error)
+    }
+  }
 
   useEffect(() => {
-    async function getData() {
-      try {
-        const response = await axios.get("http://localhost:9000/api/usuarios/contratado")
-        setContrtados(response.data.usuarios)
-      } catch (error) {
-        console.error("Ha ocurrido un error", error)
-      }
-    }
-    getData()
+    getDataActive()
+    getDataNew()
+    getDataContrato()
   }, [])
-
-
-
 
   const handleCurriculumClick = () => {
     setIsPerfil(false)
@@ -109,19 +79,19 @@ const Admin = ({ userData }) => {
               <ul>
                 <div>
                   <li onClick={handleCurriculumClick}>
-                    <a href='#' className={isSelectedCurriculum ? "text-yellow" : ""}>
+                    <a href='#0' className={isSelectedCurriculum ? "text-yellow" : ""}>
                       Curriculum
                     </a>
                   </li>
                   <li onClick={handleContratadosClick}>
-                    <a href='#' className={isSelectedContratados ? "text-yellow" : ""}>
+                    <a href='#0' className={isSelectedContratados ? "text-yellow" : ""}>
                       Contratados
                     </a>
                   </li>
                 </div>
                 <div>
                   <li onClick={handlePerfilClick}>
-                    <a href='#' className={isPerfil ? "text-yellow" : ""}>
+                    <a href='#0' className={isPerfil ? "text-yellow" : ""}>
                       <i className='fa-solid fa-gear'></i> Perfil
                     </a>
                   </li>
@@ -134,11 +104,11 @@ const Admin = ({ userData }) => {
           ) : (
             <div>
               {isSelectedContratados ? (
-                <TableContratados usuarios={contratados} getDataActive={getDataActive} getDataNew={getDataNew} idCamper={idCamper} setIdCamper={setIdCamper} setCamper={setCamper}/>
+                <TableContratados usuarios={contratados} getDataActive={getDataActive} getDataNew={getDataNew} idCamper={idCamper} setIdCamper={setIdCamper} getDataContrato={getDataContrato}/>
               ) : (
                 <div>
-                  <PageTable aprovacion={aprovacion} getDataNew={getDataNew} getDataActive={getDataActive} idCamper={idCamper} setIdCamper={setIdCamper}  setCamper={setCamper}/>
-                  <TablaActivos usuarios={usuarios} getDataActive={getDataActive}  getDataNew={getDataNew} idCamper={idCamper} setIdCamper={setIdCamper} setCamper={setCamper}/>
+                  <PageTable aprovacion={aprovacion} getDataNew={getDataNew} getDataActive={getDataActive} idCamper={idCamper} setIdCamper={setIdCamper} />
+                  <TablaActivos usuarios={usuarios} getDataActive={getDataActive}  getDataNew={getDataNew} setIdCamper={setIdCamper} getDataContrato={getDataContrato}/>
                 </div>
               )}
             </div>

@@ -3,8 +3,13 @@ import { Card, CardBody } from "reactstrap"
 import { useInView } from "react-intersection-observer"
 
 const CardComponent = ({ setDetalles, handleDetalle, user }) => {
-  const { ref: myRef, inView: isVisible } = useInView()
-  const [ImgUser, setImgUser] = useState("")
+  const { ref: myRef, inView: isVisible } = useInView();
+  const [view, setView] = useState(false);
+  const [ImgUser, setImgUser] = useState("");
+
+  if(isVisible && !view){
+    setView(isVisible)
+  }
 
   useEffect(() => {
     let ImgUserr
@@ -17,11 +22,9 @@ const CardComponent = ({ setDetalles, handleDetalle, user }) => {
     }
   }, [user])
 
-  console.log(ImgUser);
-
   return (
     <div ref={myRef} className='col-md-6 col-lg-4'>
-      <Card className={isVisible ? "card-shadow cards" : "card-shadow"}>
+      <Card className={view ? "card-shadow cards" : "card-shadow"}>
         <CardBody>
           <h6 className='font-light m-b-30'>{user.Descripcion}</h6>
           <div className='d-flex no-block align-items-center'>
@@ -31,21 +34,21 @@ const CardComponent = ({ setDetalles, handleDetalle, user }) => {
             <div className='m-l-20'>
               <h6 className='m-b-0 customer'>{user.Nombre}</h6>
               <div className='font-10'>
-                <a href='' className='text-success'>
+                <b className='text-success'>
                   <i className='fa fa-star'></i>
-                </a>
-                <a href='' className='text-success'>
+                </b>
+                <b className='text-success'>
                   <i className='fa fa-star'></i>
-                </a>
-                <a href='' className='text-success'>
+                </b>
+                <b className='text-success'>
                   <i className='fa fa-star'></i>
-                </a>
-                <a href='' className='text-success'>
+                </b>
+                <b className='text-success'>
                   <i className='fa fa-star'></i>
-                </a>
-                <a href='' className='text-muted'>
+                </b>
+                <b className='text-muted'>
                   <i className='fa fa-star'></i>
-                </a>
+                </b>
               </div>
             </div>
           </div>

@@ -4,16 +4,14 @@ import axios from "axios"
 import Swal from "sweetalert2"
 import Modal from "./modal"
 
-const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCamper, setCamper }) => {
+const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCamper }) => {
   const [camperData, setCamperData] = useState("")
 
   useEffect(() => {
     async function getData() {
-      const idCarga = localStorage.getItem("IDCAMPERadmi")
-
       try {
-        if (idCarga) {
-          const response = await axios.get(`http://localhost:9000/api/usuarios/user/${idCarga}`)
+        if (idCamper) {
+          const response = await axios.get(`http://localhost:9000/api/usuarios/user/${idCamper}`)
           setCamperData(response.data)
         }
       } catch (error) {
@@ -24,8 +22,6 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
   }, [idCamper])
 
   const putActive = async (id) => {
-    console.log(id)
-
     try {
       await axios
         .put(
@@ -38,8 +34,6 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
         .then((response) => {
           getDataActive()
           getDataNew()
-        
-
         })
         .catch((err) => {
           console.error("Un error :(", err)
@@ -49,9 +43,7 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
     }
   }
 
-
   const Delete = async (id) => {
-    console.log(id)
       Swal.fire({
         icon:"question",
         title: "Borrar",
@@ -71,18 +63,13 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
             .then((response) => {
               getDataActive()
               getDataNew()
-            
-    
             })
             .catch((err) => {
               console.error("Un error :(", err)
             })
-
         }})
   }
 
-
-  console.log("Datos de aprovacion:", aprovacion)
   return (
     <div className='mt-5 '>
       <div className='spacer' id='table-component'>
@@ -128,7 +115,7 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
                             className='btn btn-primary'
                             data-bs-toggle='modal'
                             data-bs-target='#staticBackdrop'
-                            onClick={() => setCamper(usuario._id)}
+                            onClick={() => setIdCamper(usuario._id)}
                           >
                             Ver
                           </button>
