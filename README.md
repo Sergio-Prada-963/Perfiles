@@ -1,5 +1,11 @@
 # Reto Side Project
 
+![imng](https://github.com/Sergio-Prada-963/Perfiles/assets/133453267/7c429cad-5b35-43b8-908e-84cd1112d78b)
+
+### Video descriptivo 
+
+[Descripcion](https://youtu.be/KyqxN8Um1Lg)
+
 Este proyecto se basa en la creación de una aplicación web cuyo objetivo es mostrar los perfiles laborales de los campers a las empresas. Estos perfiles deben pasar por revisión y autorización de un administrador, quien determinará si el perfil está listo y apto para ser visualizado.
 
 ## Tecnologías Utilizadas
