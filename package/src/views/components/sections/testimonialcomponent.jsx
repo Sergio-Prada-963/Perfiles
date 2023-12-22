@@ -17,7 +17,7 @@ const TestimonialComponent = () => {
     async function fetch() {
       try {
         await axios
-          .get("http://localhost:9000/api/usuarios")
+          .get("http://https://apicampuscv.onrender.com/api/usuarios")
           .then((response) => {
             setUsuarios(response.data.usuarios)
             setloader(false)

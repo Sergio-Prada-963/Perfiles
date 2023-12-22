@@ -11,7 +11,7 @@ const FormComponent = () => {
     e.preventDefault()
     try {
       axios
-        .post("http://localhost:9000/api/usuarios", {
+        .post("http://https://apicampuscv.onrender.com/api/usuarios", {
           Nombre,
           Apellido,
           Correo,

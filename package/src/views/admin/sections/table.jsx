@@ -11,7 +11,7 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
     async function getData() {
       try {
         if (idCamper) {
-          const response = await axios.get(`http://localhost:9000/api/usuarios/user/${idCamper}`)
+          const response = await axios.get(`http://https://apicampuscv.onrender.com/api/usuarios/user/${idCamper}`)
           setCamperData(response.data)
         }
       } catch (error) {
@@ -25,7 +25,7 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
     try {
       await axios
         .put(
-          `http://localhost:9000/api/usuarios/${id}`,
+          `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
           {
             Estado: "ACTIVO",
           },
@@ -54,7 +54,7 @@ const PageTable = ({ aprovacion, getDataNew, getDataActive, idCamper, setIdCampe
         if (result.isConfirmed) {
           await axios
             .put(
-              `http://localhost:9000/api/usuarios/${id}`,
+              `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
               {
                 Estado: "INACTIVO",
               },

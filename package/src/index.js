@@ -27,7 +27,7 @@ function App() {
     if (document.cookie.includes("secretX=")) {
       try {
         await axios
-          .get(`http://localhost:9000/api/usuarios/current`, { withCredentials: true })
+          .get(`http://https://apicampuscv.onrender.com/api/usuarios/current`, { withCredentials: true })
           .then((response) => {
             setUserData(response.data)
             isLoged(true)

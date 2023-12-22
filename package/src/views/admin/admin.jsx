@@ -20,7 +20,7 @@ const Admin = ({ userData }) => {
 
   async function getDataActive() {
     try {
-      const response = await axios.get("http://localhost:9000/api/usuarios")
+      const response = await axios.get("http://https://apicampuscv.onrender.com/api/usuarios")
       setUsuarios(response.data.usuarios)
     } catch (error) {
       console.error("Ha ocurrido un error", error)
@@ -29,7 +29,7 @@ const Admin = ({ userData }) => {
 
   async function getDataNew() {
     try {
-      const response = await axios.get("http://localhost:9000/api/usuarios/proceso")
+      const response = await axios.get("http://https://apicampuscv.onrender.com/api/usuarios/proceso")
       setAprovacion(response.data)
     } catch (error) {
       console.error("Ha ocurrido un error", error)
@@ -38,7 +38,7 @@ const Admin = ({ userData }) => {
 
   async function getDataContrato() {
     try {
-      const response = await axios.get("http://localhost:9000/api/usuarios/contratado")
+      const response = await axios.get("http://https://apicampuscv.onrender.com/api/usuarios/contratado")
       setContrtados(response.data.usuarios)
     } catch (error) {
       console.error("Ha ocurrido un error", error)

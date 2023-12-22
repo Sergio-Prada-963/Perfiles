@@ -69,7 +69,7 @@ const ConfigPerfil = ({ userData, functionIni }) => {
     try {
       axios
         .patch(
-          "http://localhost:9000/api/usuarios/update/current",
+          "http://https://apicampuscv.onrender.com/api/usuarios/update/current",
           {
             Foto: nameNewImage ? nameNewImage : userData.Foto ? userData.Foto : "default.png",
             Nombre: nameUser,
@@ -88,7 +88,7 @@ const ConfigPerfil = ({ userData, functionIni }) => {
         )
         .then(() => {
           if(formImage){
-            axios.post("http://localhost:9000/api/uploads/img",formImage, {
+            axios.post("http://https://apicampuscv.onrender.com/api/uploads/img",formImage, {
                   withCredentials: true
                 }
               ).then(()=>{
@@ -107,7 +107,7 @@ const ConfigPerfil = ({ userData, functionIni }) => {
               })
           }
           if(formFile){
-            axios.post("http://localhost:9000/api/uploads/file",formFile, {
+            axios.post("http://https://apicampuscv.onrender.com/api/uploads/file",formFile, {
                   withCredentials: true
                 }
               ).then(()=>{

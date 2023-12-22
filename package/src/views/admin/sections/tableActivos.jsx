@@ -8,7 +8,7 @@ const TablaActivos = ({ usuarios, getDataActive, getDataNew, setIdCamper, getDat
     try {
       await axios
         .put(
-          `http://localhost:9000/api/usuarios/${id}`,
+          `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
           {
             Estado: "CONTRATADO",
           },
@@ -31,7 +31,7 @@ const TablaActivos = ({ usuarios, getDataActive, getDataNew, setIdCamper, getDat
     try {
       await axios
         .put(
-          `http://localhost:9000/api/usuarios/${id}`,
+          `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
           {
             Estado: "EN PROCESO",
           },
@@ -60,7 +60,7 @@ const TablaActivos = ({ usuarios, getDataActive, getDataNew, setIdCamper, getDat
       if (result.isConfirmed) {
         await axios
           .put(
-            `http://localhost:9000/api/usuarios/${id}`,
+            `http://https://apicampuscv.onrender.com/api/usuarios/${id}`,
             {
               Estado: "INACTIVO",
             },
