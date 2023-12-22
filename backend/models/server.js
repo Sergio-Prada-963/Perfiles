@@ -23,7 +23,7 @@ class Server {
   middlewares() {
     this.app.use(
       cors({
-        origin: "https://perfiles.vercel.app/",
+        origin: "https://perfiles.vercel.app",
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         credentials: true,
         optionsSuccessStatus: 204,
